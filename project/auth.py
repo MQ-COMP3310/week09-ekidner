@@ -40,10 +40,7 @@ def signup_post():
     password = request.form.get('password')
 
     # ✔ Safe: parameterised, no string concatenation
-    user = db.session.execute(
-            text("SELECT * FROM user WHERE email = :email")
-            .bindparams(email=email)
-    ).all()
+    user = db.session.execute(text("SELECT * FROM user WHERE email = :email").bindparams(email=email)).all()
 
     # …or simply
     # user = User.query.filter_by(email=email).all()
